@@ -15,11 +15,16 @@ repositories {
     mavenCentral()
 }
 
+extra["springCloudVersion"] = "2022.0.3"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator:3.1.5")
 
-    implementation("org.springframework.cloud:spring-cloud-starter-config:4.0.4")
+    // ------ Cloud -------
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor ("org.projectlombok:lombok:1.18.30")
@@ -27,6 +32,12 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testCompileOnly ("org.projectlombok:lombok:1.18.30")
     testAnnotationProcessor ("org.projectlombok:lombok:1.18.30")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
 }
 
 tasks.withType<Test> {
