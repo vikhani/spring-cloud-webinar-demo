@@ -4,7 +4,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.3"
 }
 
-group = "edu.vikhani.spring-cloud-webinar-demo.docgen"
+group = "edu.vikhani.spring-cloud-webinar-demo"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -15,18 +15,20 @@ repositories {
     mavenCentral()
 }
 
+extra["springCloudVersion"] = "2022.0.4"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
-
-    implementation("org.springframework.cloud:spring-cloud-starter-config:4.0.4")
-
-    compileOnly ("org.projectlombok:lombok:1.18.30")
-    annotationProcessor ("org.projectlombok:lombok:1.18.30")
+    implementation("org.springframework.cloud:spring-cloud-config-server")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testCompileOnly ("org.projectlombok:lombok:1.18.30")
-    testAnnotationProcessor ("org.projectlombok:lombok:1.18.30")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
 }
 
 tasks.withType<Test> {
