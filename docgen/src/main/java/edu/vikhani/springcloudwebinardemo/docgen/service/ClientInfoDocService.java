@@ -21,7 +21,7 @@ public class ClientInfoDocService {
         log.info("Fetching client info");
 
         ClientInfo result =
-                clientInfoService.getClient();
+                clientInfoService.getClientInfo();
         if (result == null) {
             log.info("Couldn't receive client info.");
             throw new ClientInfoNotFound("Couldn't receive client info.");
