@@ -2,7 +2,6 @@ package edu.vikhani.springcloudwebinardemo.docgen.config;
 
 import io.github.resilience4j.common.circuitbreaker.configuration.CircuitBreakerConfigCustomizer;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -15,9 +14,8 @@ import static io.github.resilience4j.circuitbreaker.CircuitBreakerConfig.Sliding
 public class RestTemplateConfig {
 
     @Bean
-    @LoadBalanced
     public RestTemplate restTemplate() {
-        return new RestTemplateBuilder().rootUri("http://clientinfo/").build();
+        return new RestTemplateBuilder().rootUri("http://clientinfo:8081").build();
     }
 
     @Bean

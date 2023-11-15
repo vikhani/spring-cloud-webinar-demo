@@ -1,0 +1,20 @@
+---
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+logging:
+  level:
+    com:
+      netflix:
+        discovery: 'OFF'
+        eureka: 'OFF'
+server:
+  port: 8761
+spring:
+  application:
+    name: discovery
+  config:
+#    activate:
+#      on-cloud-platform: kubernetes
+    import: configserver:http://spring-cloud-kubernetes-configserver

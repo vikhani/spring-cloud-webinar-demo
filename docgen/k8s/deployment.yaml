@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: docgen
+  name: docgen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docgen
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: docgen
+    spec:
+      containers:
+        - image: vkhanieva/docgen_new:latest
+          imagePullPolicy: Always
+          name: docgen
+          resources: {}
+          readinessProbe:
+            httpGet:
+              port: 8082
+              path: /actuator/health/readiness
+          livenessProbe:
+            httpGet:
+              port: 8082
+              path: /actuator/health/liveness

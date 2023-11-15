@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: docgen
+  config:
+    import: "optional:configserver:"
+---
+spring:
+  application:
+    name: docgen
+  config:
+    import: configserver:http://spring-cloud-kubernetes-configserver:8888
+  cloud:
+    kubernetes:
+      discovery:
+        enabled: true
+        discovery-server-url: http://spring-cloud-kubernetes-discoveryserver:8761
+eureka:
+  client:
+    enabled: false

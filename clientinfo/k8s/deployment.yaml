@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: clientinfo
+  name: clientinfo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: clientinfo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: clientinfo
+    spec:
+      containers:
+        - image: vkhanieva/clientinfo_new:latest
+          imagePullPolicy: Always
+          name: clientinfo
+          resources: {}
+          readinessProbe:
+            httpGet:
+              port: 8081
+              path: /actuator/health/readiness
+          livenessProbe:
+            httpGet:
+              port: 8081
+              path: /actuator/health/liveness

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: gateway
+  config:
+    import: optional:configserver:http://localhost:8888
+
+---
+spring:
+  config:
+    activate:
+      on-cloud-platform: kubernetes
+    import: configserver:http://spring-cloud-kubernetes-configserver:8888
