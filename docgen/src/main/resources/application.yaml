@@ -1,5 +1,5 @@
-server:
-  port: 8082
-
-clientinfo:
-  url: http://localhost:8081/client
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: docgen
