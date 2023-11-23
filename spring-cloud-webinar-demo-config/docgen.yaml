@@ -7,10 +7,24 @@ eureka:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
   instance:
     hostname: localhost
+
 management:
   security:
     enabled: false
   endpoints:
     web:
       exposure:
-        include: health,info,beans
+        include: '*'
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+    ratelimiters:
+      enabled: false
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true

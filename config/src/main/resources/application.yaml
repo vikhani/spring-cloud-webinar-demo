@@ -11,4 +11,4 @@ spring:
           uri: https://github.com/vikhani/spring-cloud-webinar-demo.git
           search-paths: spring-cloud-webinar-demo-config
           skipSslValidation: true
-          default-label: 4_gateway
+          default-label: 5_circuit_breaker

@@ -3,3 +3,9 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: docgen
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      ourSecondCircuitBreaker:
+        slidingWindowType: COUNT_BASED

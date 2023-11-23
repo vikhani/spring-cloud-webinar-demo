@@ -2,6 +2,9 @@ server:
   port: 8080
 
 eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
   instance:
     hostname: localhost
 
@@ -15,3 +18,34 @@ spring:
             - Path=/foo/**
           filters:
             - SetPath=/doc/client
+
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+    ratelimiters:
+      enabled: false
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true
+    instances:
+      ourCircuitBreaker:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 5s
+        permitted-number-of-calls-in-half-open-state: 3
+        event-consumer-buffer-size: 10
+        sliding-window-size: 10
+        automatic-transition-from-open-to-half-open-enabled: true
+        minimum-number-of-calls: 5
+        sliding-window-type: COUNT_BASED
