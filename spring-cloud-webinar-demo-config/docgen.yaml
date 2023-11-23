@@ -28,3 +28,16 @@ resilience4j:
     configs:
       default:
         register-health-indicator: true
+
+spring:
+  cloud:
+    vault:
+      scheme: http
+      host: localhost
+      port: 8200
+      connection-timeout: 5000
+      read-timeout: 15000
+      authentication: TOKEN
+      kv.enabled: true
+      enabled: true
+      token: 00000000-0000-0000-0000-000000000000
