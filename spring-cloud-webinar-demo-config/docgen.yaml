@@ -1,13 +1,6 @@
 server:
   port: 8082
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    hostname: localhost
-
 management:
   security:
     enabled: false
@@ -28,25 +21,3 @@ resilience4j:
     configs:
       default:
         register-health-indicator: true
-
-spring:
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-  cloud:
-    vault:
-      scheme: http
-      host: localhost
-      port: 8200
-      connection-timeout: 5000
-      read-timeout: 15000
-      authentication: TOKEN
-      kv.enabled: true
-      enabled: true
-      token: 00000000-0000-0000-0000-000000000000
-    bus:
-      enabled: true
-      refresh:
-        enabled: true

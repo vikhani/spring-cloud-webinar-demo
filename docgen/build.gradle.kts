@@ -23,14 +23,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator:3.1.5")
     implementation("io.netty:netty-resolver-dns-native-macos:4.1.100.Final:osx-aarch_64")
     implementation("org.springframework.boot:spring-boot-starter-aop:3.1.5")
-    implementation("org.springframework.boot:spring-boot-starter-amqp:3.1.5")
 
     // ------ Cloud -------
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j")
-    implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
-    implementation("org.springframework.cloud:spring-cloud-starter-bus-amqp")
 
     compileOnly ("org.projectlombok:lombok:1.18.30")
     annotationProcessor ("org.projectlombok:lombok:1.18.30")

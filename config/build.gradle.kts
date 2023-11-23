@@ -4,7 +4,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.3"
 }
 
-group = "edu.vikhani.spring-cloud-webinar-demo"
+group = "edu.vikhani.spring-cloud-webinar-demo.config"
 version = "0.0.1"
 
 java {
@@ -23,7 +23,6 @@ dependencies {
 
     // ------ Cloud -------
     implementation("org.springframework.cloud:spring-cloud-config-server")
-    implementation("org.springframework.cloud:spring-cloud-starter-bus-amqp")
     implementation("org.springframework.boot:spring-boot-starter-actuator:3.1.5")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

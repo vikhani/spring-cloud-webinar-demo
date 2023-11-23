@@ -1,11 +1,19 @@
 spring:
-  config:
-    import: optional:configserver:http://localhost:8888, vault://
   application:
     name: docgen
-
-resilience4j:
-  circuitbreaker:
-    instances:
-      ourSecondCircuitBreaker:
-        slidingWindowType: COUNT_BASED
+  config:
+    import: "optional:configserver:"
+---
+spring:
+  application:
+    name: docgen
+  config:
+    import: configserver:http://spring-cloud-kubernetes-configserver:8888
+  cloud:
+    kubernetes:
+      discovery:
+        enabled: true
+        discovery-server-url: http://spring-cloud-kubernetes-discoveryserver:8761
+eureka:
+  client:
+    enabled: false

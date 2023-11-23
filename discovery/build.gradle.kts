@@ -4,7 +4,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.3"
 }
 
-group = "edu.vikhani.spring-cloud-webinar-demo"
+group = "edu.vikhani.spring-cloud-webinar-demo.discovery"
 version = "0.0.1"
 
 java {
@@ -20,6 +20,7 @@ extra["springCloudVersion"] = "2022.0.4"
 dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
 	implementation("org.springframework.cloud:spring-cloud-starter-config")
+	implementation("org.springframework.cloud:spring-cloud-kubernetes-discovery")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

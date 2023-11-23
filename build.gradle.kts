@@ -4,8 +4,8 @@ plugins {
     id("io.spring.dependency-management") version "1.1.3"
 }
 
-group = "edu.vikhani"
-version = "0.0.1-SNAPSHOT"
+group = "edu.vikhani.spring-cloud-webinar-demo"
+version = "0.0.1"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
