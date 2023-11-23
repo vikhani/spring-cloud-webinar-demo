@@ -1,11 +1,12 @@
 package edu.vikhani.springcloudwebinardemo.docgen.service;
 
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
 import edu.vikhani.springcloudwebinardemo.docgen.exception.ClientInfoNotFound;
 import edu.vikhani.springcloudwebinardemo.docgen.model.ClientInfo;
 import edu.vikhani.springcloudwebinardemo.docgen.model.ClientInfoDoc;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,15 +19,22 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class ClientInfoDocService {
     private final RestTemplate restTemplate;
-
-    @Value("${clientinfo.url}")
-    private String clientInfoUrl;
+    private final EurekaClient eurekaClient;
 
     public ClientInfoDoc getClientInfoDoc() {
-        log.info("Fetching client info from {}.", clientInfoUrl);
-        ClientInfo result = restTemplate.getForObject(clientInfoUrl, ClientInfo.class);
+        log.info("Fetching client info");
+
+        InstanceInfo service = eurekaClient
+                .getApplication("clientinfo")
+                .getInstances()
+                .get(0);
+
+        String urlFromEureka = "http://" + service.getHostName() + ":" + service.getPort() + "/client";
+
+        ClientInfo result =
+                restTemplate.getForObject(urlFromEureka, ClientInfo.class);
         if (result == null) {
-            log.info("Couldn't receive client info from {}", clientInfoUrl);
+            log.info("Couldn't receive client info from {}.", urlFromEureka);
             throw new ClientInfoNotFound("Couldn't receive client info.");
         }
 
