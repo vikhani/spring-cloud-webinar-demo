@@ -6,6 +6,7 @@ import edu.vikhani.springcloudwebinardemo.docgen.model.ClientInfoDoc;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@RefreshScope
 public class ClientInfoDocService {
     private final ClientInfoService clientInfoService;
 

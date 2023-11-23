@@ -30,6 +30,11 @@ resilience4j:
         register-health-indicator: true
 
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     vault:
       scheme: http
@@ -41,3 +46,7 @@ spring:
       kv.enabled: true
       enabled: true
       token: 00000000-0000-0000-0000-000000000000
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
