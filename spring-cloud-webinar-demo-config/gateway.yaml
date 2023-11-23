@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+eureka:
+  instance:
+    hostname: localhost
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: host_route
+          uri: lb://docgen
+          predicates:
+            - Path=/foo/**
+          filters:
+            - SetPath=/doc/client

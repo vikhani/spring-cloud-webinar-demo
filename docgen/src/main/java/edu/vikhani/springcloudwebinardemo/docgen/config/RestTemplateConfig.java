@@ -11,8 +11,7 @@ public class RestTemplateConfig {
 
     @Bean
     @LoadBalanced
-    public RestTemplate getRestTemplate(RestTemplateBuilder builder) {
-        return builder.build();
+    public RestTemplate restTemplate() {
+        return new RestTemplateBuilder().rootUri("http://clientinfo/").build();
     }
-
 }

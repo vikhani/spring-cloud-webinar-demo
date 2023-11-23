@@ -1,11 +1,16 @@
 package edu.vikhani.springcloudwebinardemo.docgen.service;
 
 import edu.vikhani.springcloudwebinardemo.docgen.model.ClientInfo;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-@FeignClient(value = "clientinfo")
-public interface ClientInfoService {
-    @GetMapping(value = "/client")
-    ClientInfo getClient();
+@Service
+@RequiredArgsConstructor
+public class ClientInfoService {
+    private final RestTemplate restTemplate;
+
+    public ClientInfo getClientInfo() {
+        return restTemplate.getForObject("/client", ClientInfo.class);
+    }
 }
