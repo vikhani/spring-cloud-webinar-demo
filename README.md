@@ -6,7 +6,9 @@
 
 This project contains basic examples for adding **Spring Cloud** components to your own projects.
 
-Each branch shows changes needed to add the corresponding component:
+In the beginning it consists of two purely synthetic modules just to have some basic "business" functionality. *Docgen* module calls *clientinfo* module. You can imagine that the first service is like some report generation system that needs info for it's result from the client service. No unit-test just because it's a minimal demo that needed to be shown in a short amount of time 😉
+
+**Each branch shows changes needed to add the corresponding component:**
 
 #### 1. [Config](https://github.com/vikhani/spring-cloud-webinar-demo/tree/1_config)
 > Component for configuring several modules/services from the same config source.
